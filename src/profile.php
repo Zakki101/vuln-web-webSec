@@ -17,7 +17,7 @@ if ($profile_id === 0) {
 //Menambahkan agar hanya user dan admin yang bisa mengakses profil. Menghindari dan menyelesaikan Vulnerability IDOR
 if ($_SESSION['user_id'] != $profile_id && $_SESSION['username'] !== 'admin') {
     header("HTTP/1.1 403 Forbidden");
-    die("Anda tidak memiliki izin untuk mengakses profil ini");
+    die("STOP, No no anda tidak memiliki izin untuk mengakses profil ini atau yang lain");
 }
 
 if (isset($_GET['update_bio'])) {
