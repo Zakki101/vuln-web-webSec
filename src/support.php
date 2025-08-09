@@ -140,7 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <?php
 if (isset($_GET['message'])) {
-    $xssTestMessage = $_GET['message']; 
+    //Menambahkan fungsi htmlspecialchars untuk mencegah XSS
+    $xssTestMessage = htmlspecialchars($_GET['message'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    //Menambahkan ini agar logika <script> di objek stropos dan preg_match dapat berfungsi
+    $rawMessage = $_GET['message'];
 
     if (strpos($xssTestMessage, "<script>window.location.href='flag.php'</script>") !== false) {
         $_SESSION['can_see_flag'] = true; 
